@@ -35,8 +35,8 @@ int main(){
 char * shortestCompletingWord(char * licensePlate, char ** words, int wordsSize){
 
     char licenseAdapted[sizeof(licensePlate)];
-    int tempLetters[160] = {0};
-    int letters[160] = {0};
+    int tempLetters[150] = {0};
+    int letters[150] = {0};
     int letterCheck = 0;
     char* smallestWord;
     int smallestIndex;
@@ -81,7 +81,7 @@ char * shortestCompletingWord(char * licensePlate, char ** words, int wordsSize)
 
         int sum = 0;
 
-        for(int k = 0; k < 160; k++)
+        for(int k = 0; k < 150; k++)
         {
             sum = sum + tempLetters[k];
         }
