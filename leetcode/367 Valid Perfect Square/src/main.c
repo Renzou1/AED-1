@@ -1,16 +1,23 @@
 bool isPerfectSquare(int num){
-bool A = true;
-long i = 0;
-    if(num != 0)
-    {
-        while(i*i < num)
+
+unsigned short end = 46341;
+unsigned short mid = end/2;
+unsigned short pastMid;
+
+    do{
+        pastMid = mid;
+        if(mid*mid < num)
         {
-            i++;
+            mid = ((end-mid)/2) + mid;
         }
-        if(i*i > num)
+        if(mid*mid > num)
         {
-            A = false;
+            end = mid;
+            mid = mid/2;
         }
-    }
-    return A;
+    } while(mid != pastMid);
+
+    if(mid*mid != num) return false;
+
+    return true;
 }
