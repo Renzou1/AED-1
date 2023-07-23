@@ -5,11 +5,11 @@ bool isAnagram(char * s, char * t){
 
     for(int i = 0; i < strlen(s); i++)
     {
-        A[(int)s[i]-97]++;
+        A[s[i]-'a']++;
     }
     for(int c = 0; c < strlen(t); c++)
     {
-        A[(int)t[c]-97]--;
+        A[t[c]-'a']--;
     }
 
     for(int j = 0; j < 26; j++)
