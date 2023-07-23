@@ -1,18 +1,23 @@
 int mySqrt(int x){
 
-long i = 0;
+unsigned int end = 65536; // square of max value 
+unsigned int middle = end/2;
 
-   if(x != 0)
-   {
-    while(i*i < x)
+    while(middle*middle != x)
     {
-        i++;        
+        if(middle*middle < x)
+        {
+            middle = ((end-middle)/2) + middle;
+        }
+        if(middle*middle > x)
+        {
+            end = middle;
+            middle = middle/2;
+        }
+        if(middle*middle < x && (middle+1)*(middle+1) > x)
+        {
+            return middle;
+        }
     }
-   }
-   if(i*i> x)
-   {
-       i--;
-   }
-
-   return i;
+   return middle;
 }
