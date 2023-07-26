@@ -7,7 +7,7 @@ int* productExceptSelf(int* nums, int numsSize, int* returnSize){
 
     int* answer = (int*)malloc(sizeof(int) * numsSize);
     int possibles[61] = {0};
-    int product = 0;
+    int product = 1;
 
     for(int i = 0; i < numsSize; i++)
     {
@@ -15,20 +15,14 @@ int* productExceptSelf(int* nums, int numsSize, int* returnSize){
         {
             for(int c = 0, teste = false; c < numsSize; c++)
             {
-                if(c != i && teste == true)
+                if(c != i)
                 {
                     product*= nums[c];
                 } 
-                if(c != i && teste == false)
-                {
-                    product =  nums[c];
-                    teste = true;
-                }
-                
             }
             possibles[nums[i]+OFFSET] = product;
             answer[i] = product;
-            product = 0;
+            product = 1;
         }
         else
         {
