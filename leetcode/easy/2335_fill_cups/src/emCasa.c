@@ -3,7 +3,7 @@
 
 #define SIZE 3
 
-int fillCups(int* amount, int amountSize);
+int fillCups( int* amount, int amountSize );
 
 int main()
 {
