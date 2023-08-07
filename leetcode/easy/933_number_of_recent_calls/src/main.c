@@ -6,6 +6,39 @@ typedef struct {
     int requestCounter;
 } RecentCounter;
 
+void removeOutOfRangeRequests(RecentCounter* obj, int shift)
+{
+    for(int i = 0; i < shift; i++)
+    {   
+        if(obj->requests[i] == true)
+        {
+            obj->requests[i] = false;
+            obj->requestCounter--;
+        }   
+    }
+
+}
+
+void shiftOldRequests(RecentCounter* obj, int shift)
+{
+    for(int i = shift; i < 3001; i++) 
+        {
+            if(obj->requests[i] == true)
+            {
+                obj->requests[i] = false;
+                obj->requests[i-shift] = true;
+            }
+        }
+}
+
+void clearRequests(RecentCounter* obj)
+{
+    for(int c = 0; c < 3001; c++)
+        {
+            obj->requests[c] = false;
+        }
+        obj->requestCounter = 0;
+}
 
 RecentCounter* recentCounterCreate() {
     RecentCounter* obj = (RecentCounter*)malloc(sizeof(RecentCounter));
@@ -32,31 +65,13 @@ int recentCounterPing(RecentCounter* obj, int t) {
 
     if(shift > 3000)
     {
-        for(int c = 0; c < 3001; c++)
-        {
-            obj->requests[c] = false;
-        }
-        obj->requestCounter = 0;
+        clearRequests(obj);
 
     } else{
     
-        for(int i = 0; i < shift; i++)
-        {   
-            if(obj->requests[i] == true)
-            {
-                obj->requests[i] = false;
-                obj->requestCounter--;
-            }   
-        }
-    
-        for(int i = shift; i < 3001; i++) 
-        {
-            if(obj->requests[i] == true)
-            {
-                obj->requests[i] = false;
-                obj->requests[i-shift] = true;
-            }
-        }
+        removeOutOfRangeRequests(obj, shift);
+
+        shiftOldRequests(obj, shift); 
 
     }
 
