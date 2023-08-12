@@ -73,8 +73,7 @@ int main()
                     current = current->right;
                 }
             }
-            if(info < current->info)
-            {
+            else{ 
                 if(current->left == NULL)
                 {
                     current->left = (Node*)malloc(sizeof(Node));
